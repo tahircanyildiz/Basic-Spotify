@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0bd8857344a14b6da56545a8e974879b" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="VeritabaniModel.Abonelik" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeritabaniModel.Album" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeritabaniModel.AlbumSanatci" Width="1.5" PointX="5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeritabaniModel.AlbumSarki" Width="1.5" PointX="10.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeritabaniModel.CalmaListesi" Width="1.5" PointX="10.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeritabaniModel.Kullanici" Width="1.5" PointX="3.125" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeritabaniModel.Sanatci" Width="1.5" PointX="2.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeritabaniModel.Sarki" Width="1.5" PointX="7.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeritabaniModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeritabaniModel.Takipci" Width="1.5" PointX="6.125" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeritabaniModel.Tur" Width="1.5" PointX="6" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeritabaniModel.Ulke" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <AssociationConnector Association="VeritabaniModel.FK_Kullanici_Abonelik" ManuallyRouted="false" />
+        <AssociationConnector Association="VeritabaniModel.FK_AlbumSanatci_Album" ManuallyRouted="false" />
+        <AssociationConnector Association="VeritabaniModel.FK_AlbumSarki_Album" ManuallyRouted="false" />
+        <AssociationConnector Association="VeritabaniModel.FK_AlbumSanatci_Sanatci" ManuallyRouted="false" />
+        <AssociationConnector Association="VeritabaniModel.FK_AlbumSarki_Sarki" ManuallyRouted="false" />
+        <AssociationConnector Association="VeritabaniModel.FK_CalmaListesi_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="VeritabaniModel.FK_CalmaListesi_Sarki" ManuallyRouted="false" />
+        <AssociationConnector Association="VeritabaniModel.FK_CalmaListesi_Tur" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="VeritabaniModel.FK_Kullanici_Ulke" />
+        <AssociationConnector Association="VeritabaniModel.FK_Takipci_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="VeritabaniModel.FK_Takipci_Kullanici1" ManuallyRouted="false" />
+        <AssociationConnector Association="VeritabaniModel.FK_Sanatci_Ulke" ManuallyRouted="false" />
+        <AssociationConnector Association="VeritabaniModel.FK_Sarki_Sanatci" ManuallyRouted="false" />
+        <AssociationConnector Association="VeritabaniModel.FK_Sarki_Tur" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

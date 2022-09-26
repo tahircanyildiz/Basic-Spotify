@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VeritabaniModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Abonelik">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AbonelikTuru" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Kullanici_Abonelik" FromRole="Abonelik" ToRole="Kullanici" />
+  </EntityType>
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="AlbumID" />
+    </Key>
+    <Property Name="AlbumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AlbumAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tarih" Type="DateTime" Precision="0" />
+    <Property Name="TurID" Type="Int32" />
+    <NavigationProperty Name="AlbumSanatcilari" Relationship="Self.FK_AlbumSanatci_Album" FromRole="Album" ToRole="AlbumSanatci" />
+    <NavigationProperty Name="AlbumSarkilari" Relationship="Self.FK_AlbumSarki_Album" FromRole="Album" ToRole="AlbumSarki" />
+  </EntityType>
+  <EntityType Name="AlbumSanatci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AlbumID" Type="Int32" />
+    <Property Name="SanatciID" Type="Int32" />
+    <NavigationProperty Name="Album" Relationship="Self.FK_AlbumSanatci_Album" FromRole="AlbumSanatci" ToRole="Album" />
+    <NavigationProperty Name="Sanatci" Relationship="Self.FK_AlbumSanatci_Sanatci" FromRole="AlbumSanatci" ToRole="Sanatci" />
+  </EntityType>
+  <EntityType Name="AlbumSarki">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AlbumID" Type="Int32" />
+    <Property Name="SarkiID" Type="Int32" />
+    <NavigationProperty Name="Album" Relationship="Self.FK_AlbumSarki_Album" FromRole="AlbumSarki" ToRole="Album" />
+    <NavigationProperty Name="Sarki" Relationship="Self.FK_AlbumSarki_Sarki" FromRole="AlbumSarki" ToRole="Sarki" />
+  </EntityType>
+  <EntityType Name="CalmaListesi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciID" Type="Int32" />
+    <Property Name="SarkiID" Type="Int32" />
+    <Property Name="TurID" Type="Int32" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_CalmaListesi_Kullanici" FromRole="CalmaListesi" ToRole="Kullanici" />
+    <NavigationProperty Name="Sarki" Relationship="Self.FK_CalmaListesi_Sarki" FromRole="CalmaListesi" ToRole="Sarki" />
+    <NavigationProperty Name="Tur" Relationship="Self.FK_CalmaListesi_Tur" FromRole="CalmaListesi" ToRole="Tur" />
+  </EntityType>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="KullaniciID" />
+    </Key>
+    <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AbonelikTuru" Type="Int32" />
+    <Property Name="UlkeID" Type="Int32" />
+    <Property Name="Odendimi" Type="Int32" />
+    <NavigationProperty Name="Abonelik" Relationship="Self.FK_Kullanici_Abonelik" FromRole="Kullanici" ToRole="Abonelik" />
+    <NavigationProperty Name="CalmaListeleri" Relationship="Self.FK_CalmaListesi_Kullanici" FromRole="Kullanici" ToRole="CalmaListesi" />
+    <NavigationProperty Name="Ulke" Relationship="Self.FK_Kullanici_Ulke" FromRole="Kullanici" ToRole="Ulke" />
+    <NavigationProperty Name="Takipciler" Relationship="Self.FK_Takipci_Kullanici" FromRole="Kullanici" ToRole="Takipci" />
+    <NavigationProperty Name="TakipEdilenler" Relationship="Self.FK_Takipci_Kullanici1" FromRole="Kullanici" ToRole="Takipci" />
+  </EntityType>
+  <EntityType Name="Sanatci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UlkeID" Type="Int32" />
+    <NavigationProperty Name="Albumler" Relationship="Self.FK_AlbumSanatci_Sanatci" FromRole="Sanatci" ToRole="AlbumSanatci" />
+    <NavigationProperty Name="Ulke" Relationship="Self.FK_Sanatci_Ulke" FromRole="Sanatci" ToRole="Ulke" />
+    <NavigationProperty Name="Sarkilar" Relationship="Self.FK_Sarki_Sanatci" FromRole="Sanatci" ToRole="Sarki" />
+  </EntityType>
+  <EntityType Name="Sarki">
+    <Key>
+      <PropertyRef Name="SarkiID" />
+    </Key>
+    <Property Name="SarkiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tarih" Type="DateTime" Precision="0" />
+    <Property Name="TurID" Type="Int32" />
+    <Property Name="Sure" Type="Int32" />
+    <Property Name="DinlenmeSayisi" Type="Int32" />
+    <Property Name="SanatciID" Type="Int32" />
+    <NavigationProperty Name="Albumler" Relationship="Self.FK_AlbumSarki_Sarki" FromRole="Sarki" ToRole="AlbumSarki" />
+    <NavigationProperty Name="CalmaListeleri" Relationship="Self.FK_CalmaListesi_Sarki" FromRole="Sarki" ToRole="CalmaListesi" />
+    <NavigationProperty Name="Sanatci" Relationship="Self.FK_Sarki_Sanatci" FromRole="Sarki" ToRole="Sanatci" />
+    <NavigationProperty Name="Tur" Relationship="Self.FK_Sarki_Tur" FromRole="Sarki" ToRole="Tur" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Takipci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TakipedenID" Type="Int32" />
+    <Property Name="TakipedilenID" Type="Int32" />
+    <NavigationProperty Name="TakipEden" Relationship="Self.FK_Takipci_Kullanici" FromRole="Takipci" ToRole="Kullanici" />
+    <NavigationProperty Name="TakipEdilen" Relationship="Self.FK_Takipci_Kullanici1" FromRole="Takipci" ToRole="Kullanici" />
+  </EntityType>
+  <EntityType Name="Tur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TurAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CalmaListeleri" Relationship="Self.FK_CalmaListesi_Tur" FromRole="Tur" ToRole="CalmaListesi" />
+    <NavigationProperty Name="Sarkilar" Relationship="Self.FK_Sarki_Tur" FromRole="Tur" ToRole="Sarki" />
+  </EntityType>
+  <EntityType Name="Ulke">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UlkeAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Kullanici_Ulke" FromRole="Ulke" ToRole="Kullanici" />
+    <NavigationProperty Name="Sanatcilar" Relationship="Self.FK_Sanatci_Ulke" FromRole="Ulke" ToRole="Sanatci" />
+  </EntityType>
+  <Association Name="FK_Kullanici_Abonelik">
+    <End Role="Abonelik" Type="Self.Abonelik" Multiplicity="0..1" />
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Abonelik">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kullanici">
+        <PropertyRef Name="AbonelikTuru" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlbumSanatci_Album">
+    <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
+    <End Role="AlbumSanatci" Type="Self.AlbumSanatci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="AlbumID" />
+      </Principal>
+      <Dependent Role="AlbumSanatci">
+        <PropertyRef Name="AlbumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlbumSarki_Album">
+    <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
+    <End Role="AlbumSarki" Type="Self.AlbumSarki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="AlbumID" />
+      </Principal>
+      <Dependent Role="AlbumSarki">
+        <PropertyRef Name="AlbumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlbumSanatci_Sanatci">
+    <End Role="Sanatci" Type="Self.Sanatci" Multiplicity="0..1" />
+    <End Role="AlbumSanatci" Type="Self.AlbumSanatci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sanatci">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AlbumSanatci">
+        <PropertyRef Name="SanatciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlbumSarki_Sarki">
+    <End Role="Sarki" Type="Self.Sarki" Multiplicity="0..1" />
+    <End Role="AlbumSarki" Type="Self.AlbumSarki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sarki">
+        <PropertyRef Name="SarkiID" />
+      </Principal>
+      <Dependent Role="AlbumSarki">
+        <PropertyRef Name="SarkiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CalmaListesi_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="CalmaListesi" Type="Self.CalmaListesi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="CalmaListesi">
+        <PropertyRef Name="KullaniciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CalmaListesi_Sarki">
+    <End Role="Sarki" Type="Self.Sarki" Multiplicity="0..1" />
+    <End Role="CalmaListesi" Type="Self.CalmaListesi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sarki">
+        <PropertyRef Name="SarkiID" />
+      </Principal>
+      <Dependent Role="CalmaListesi">
+        <PropertyRef Name="SarkiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CalmaListesi_Tur">
+    <End Role="Tur" Type="Self.Tur" Multiplicity="0..1" />
+    <End Role="CalmaListesi" Type="Self.CalmaListesi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CalmaListesi">
+        <PropertyRef Name="TurID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kullanici_Ulke">
+    <End Type="Self.Ulke" Multiplicity="0..1" Role="Ulke" />
+    <End Type="Self.Kullanici" Multiplicity="*" Role="Kullanici" />
+    <ReferentialConstraint>
+      <Principal Role="Ulke">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kullanici">
+        <PropertyRef Name="UlkeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Takipci_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Takipci" Type="Self.Takipci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="Takipci">
+        <PropertyRef Name="TakipedenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Takipci_Kullanici1">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Takipci" Type="Self.Takipci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="Takipci">
+        <PropertyRef Name="TakipedilenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sanatci_Ulke">
+    <End Role="Ulke" Type="Self.Ulke" Multiplicity="0..1" />
+    <End Role="Sanatci" Type="Self.Sanatci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ulke">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sanatci">
+        <PropertyRef Name="UlkeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sarki_Sanatci">
+    <End Role="Sanatci" Type="Self.Sanatci" Multiplicity="0..1" />
+    <End Role="Sarki" Type="Self.Sarki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sanatci">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sarki">
+        <PropertyRef Name="SanatciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sarki_Tur">
+    <End Role="Tur" Type="Self.Tur" Multiplicity="0..1" />
+    <End Role="Sarki" Type="Self.Sarki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sarki">
+        <PropertyRef Name="TurID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Abonelikler" EntityType="Self.Abonelik" />
+    <EntitySet Name="Albumler" EntityType="Self.Album" />
+    <EntitySet Name="AlbumSanatcilari" EntityType="Self.AlbumSanatci" />
+    <EntitySet Name="AlbumSarkilari" EntityType="Self.AlbumSarki" />
+    <EntitySet Name="CalmaListeleri" EntityType="Self.CalmaListesi" />
+    <EntitySet Name="Kullanicilar" EntityType="Self.Kullanici" />
+    <EntitySet Name="Sanatcilar" EntityType="Self.Sanatci" />
+    <EntitySet Name="Sarkilar" EntityType="Self.Sarki" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Takipciler" EntityType="Self.Takipci" />
+    <EntitySet Name="Turler" EntityType="Self.Tur" />
+    <EntitySet Name="Ulkeler" EntityType="Self.Ulke" />
+    <AssociationSet Name="FK_Kullanici_Abonelik" Association="Self.FK_Kullanici_Abonelik">
+      <End Role="Abonelik" EntitySet="Abonelikler" />
+      <End Role="Kullanici" EntitySet="Kullanicilar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlbumSanatci_Album" Association="Self.FK_AlbumSanatci_Album">
+      <End Role="Album" EntitySet="Albumler" />
+      <End Role="AlbumSanatci" EntitySet="AlbumSanatcilari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlbumSarki_Album" Association="Self.FK_AlbumSarki_Album">
+      <End Role="Album" EntitySet="Albumler" />
+      <End Role="AlbumSarki" EntitySet="AlbumSarkilari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlbumSanatci_Sanatci" Association="Self.FK_AlbumSanatci_Sanatci">
+      <End Role="Sanatci" EntitySet="Sanatcilar" />
+      <End Role="AlbumSanatci" EntitySet="AlbumSanatcilari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlbumSarki_Sarki" Association="Self.FK_AlbumSarki_Sarki">
+      <End Role="Sarki" EntitySet="Sarkilar" />
+      <End Role="AlbumSarki" EntitySet="AlbumSarkilari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CalmaListesi_Kullanici" Association="Self.FK_CalmaListesi_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanicilar" />
+      <End Role="CalmaListesi" EntitySet="CalmaListeleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CalmaListesi_Sarki" Association="Self.FK_CalmaListesi_Sarki">
+      <End Role="Sarki" EntitySet="Sarkilar" />
+      <End Role="CalmaListesi" EntitySet="CalmaListeleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CalmaListesi_Tur" Association="Self.FK_CalmaListesi_Tur">
+      <End Role="Tur" EntitySet="Turler" />
+      <End Role="CalmaListesi" EntitySet="CalmaListeleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kullanici_Ulke" Association="Self.FK_Kullanici_Ulke">
+      <End EntitySet="Ulkeler" Role="Ulke" />
+      <End EntitySet="Kullanicilar" Role="Kullanici" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Takipci_Kullanici" Association="Self.FK_Takipci_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanicilar" />
+      <End Role="Takipci" EntitySet="Takipciler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Takipci_Kullanici1" Association="Self.FK_Takipci_Kullanici1">
+      <End Role="Kullanici" EntitySet="Kullanicilar" />
+      <End Role="Takipci" EntitySet="Takipciler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sanatci_Ulke" Association="Self.FK_Sanatci_Ulke">
+      <End Role="Ulke" EntitySet="Ulkeler" />
+      <End Role="Sanatci" EntitySet="Sanatcilar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sarki_Sanatci" Association="Self.FK_Sarki_Sanatci">
+      <End Role="Sanatci" EntitySet="Sanatcilar" />
+      <End Role="Sarki" EntitySet="Sarkilar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sarki_Tur" Association="Self.FK_Sarki_Tur">
+      <End Role="Tur" EntitySet="Turler" />
+      <End Role="Sarki" EntitySet="Sarkilar" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

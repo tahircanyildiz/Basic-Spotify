@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuzikDosyam_Prolab3", "MuzikDosyam_Prolab3\MuzikDosyam_Prolab3.csproj", "{7ED566F3-D01D-40A2-801F-E4DA39029067}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7ED566F3-D01D-40A2-801F-E4DA39029067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ED566F3-D01D-40A2-801F-E4DA39029067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ED566F3-D01D-40A2-801F-E4DA39029067}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ED566F3-D01D-40A2-801F-E4DA39029067}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4163787D-8810-40EA-A7E8-5CF89ACBC0A6}
+	EndGlobalSection
+EndGlobal
